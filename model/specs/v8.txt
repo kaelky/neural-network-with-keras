@@ -1,0 +1,2 @@
+relu 4
+sigmoid 1

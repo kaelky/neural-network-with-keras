@@ -1,3 +1,2 @@
 relu 8
-relu 4
-sigmoid 1
+relu 1

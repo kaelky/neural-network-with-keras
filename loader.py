@@ -37,8 +37,14 @@ def construct_model(model_definition):
             neurons.append(row[1])
     
     model = Sequential()
+    counter = 1
     for activation_function, total_neuron in zip(activations, neurons):
-        model.add(Dense(total_neuron, input_dim = 12, activation=str(activation_function)))
+        if counter == 1:
+            model.add(Dense(total_neuron, input_dim = 12, activation=str(activation_function)))
+            counter += 1
+        else:
+            model.add(Dense(total_neuron, activation=str(activation_function)))
+            counter += 1
 
     return model
 
@@ -49,6 +55,6 @@ def load_model_information(model_definition):
             row = row.split(" ")
             activations.append(row[0])
 
-    input_layer, hidden_layer, output_layer = str(activations[0]), str(activations[1]), str(activations[2])
+    activation_function_from_input, activation_function_from_hidden = str(activations[0]), str(activations[1])
 
-    return input_layer, hidden_layer, output_layer
+    return activation_function_from_input, activation_function_from_hidden
