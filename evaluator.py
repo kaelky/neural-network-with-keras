@@ -14,21 +14,16 @@ def get_report(truths, predictions):
         elif truth == 1 and prediction == 1:
             tn += 1
 
-    print((tp))
-    print((tn))
-    print((fp))
-    print((fn))
+    accuracy    = round((tp + tn) / (tp + fp + tn + fn), 4)
+    precision   = round(tp / (tp + fp), 4)
+    recall      = round(tp / (tp + fn), 4)
+    f1_measure  = round(2 * ((precision * recall)/(precision + recall)), 4)
 
-    # accuracy    = round((tp + tn) / (tp + fp + tn + fn), 4)
-    # precision   = round(tp / (tp + fp), 4)
-    # recall      = round(tp / (tp + fn), 4)
-    # f1_measure  = round(2 * ((precision * recall)/(precision + recall)), 4)
+    report = {
+        'accuracy'  : accuracy,
+        'precision' : precision,
+        'recall'    : recall,
+        'f1'        : f1_measure,
+    }
 
-    # report = {
-    #     'accuracy'  : accuracy,
-    #     'precision' : precision,
-    #     'recall'    : recall,
-    #     'f1'        : f1_measure,
-    # }
-
-    # return report
+    return report

@@ -27,11 +27,11 @@ y_train = training_data['y_train']
 X_test  = testing_data['X_test']
 y_test  = testing_data['y_test']
 
-loss_specs      = "binary_crossentropy"
-optimizer_specs = "adam"
-epochs_specs    = 2
+loss_specs      = "hinge"
+optimizer_specs = "SGD"
+epochs_specs    = 1
 
-model_version = "1"
+model_version = "12"
 #TODO(2) If you want to load the model from keras, uncomment line 37 until line 40
 """
 model = load_model_from_keras(f"/Users/kaelky/Workspace/Python/PDIB/discussion-07/model/res/model_v{model_version}_data_v{data_version}_{loss_specs}_{optimizer_specs}_epochs={epochs_specs}.h5")
@@ -39,7 +39,7 @@ model.summary()
 """
 
 model = construct_model(f'/Users/kaelky/Workspace/Python/PDIB/discussion-07/model/specs/v{model_version}.txt')
-activation_function_from_input, activation_function_from_hidden = load_model_information(f'/Users/kaelky/Workspace/Python/PDIB/discussion-07/model/specs/v1.txt')
+activation_function_from_input, activation_function_from_hidden = load_model_information(f'/Users/kaelky/Workspace/Python/PDIB/discussion-07/model/specs/v{model_version}.txt')
 
 model.compile(loss=loss_specs, optimizer=optimizer_specs, metrics=['accuracy'])
 model.fit(np.array(X_train), np.array(y_train), epochs=epochs_specs)
@@ -70,8 +70,8 @@ print(f"Precision    : {precision}")
 print(f"Recall       : {recall}")
 print(f"F1-Measure   : {f1}")
 
-report_detail = f"model_v{model_version}_data_v{data_version}_{loss_specs}_{optimizer_specs}_epochs_{epochs_specs}"
-save_evaluation_result(report, report_detail)
+# report_detail = f"model_v{model_version}_data_v{data_version}_{loss_specs}_{optimizer_specs}_epochs_{epochs_specs}"
+# save_evaluation_result(report, report_detail)
 
 #TODO(3) If you want to save the model to keras, uncomment line 69
-model.save(f"/Users/kaelky/Workspace/Python/PDIB/discussion-07/model/res/model_v{model_version}_data_v{data_version}_{loss_specs}_{optimizer_specs}_epochs={epochs_specs}.h5")
+# model.save(f"/Users/kaelky/Workspace/Python/PDIB/discussion-07/model/res/model_v{model_version}_data_v{data_version}_{loss_specs}_{optimizer_specs}_epochs={epochs_specs}.h5")
